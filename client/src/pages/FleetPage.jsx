@@ -92,21 +92,11 @@ export default function FleetPage() {
           <form className="inline" onSubmit={createDriver}>
             <label>Name<input required value={driverForm.name} onChange={(e) => setDriverForm({ ...driverForm, name: e.target.value })} /></label>
             <label>License No<input required value={driverForm.licenseNo} onChange={(e) => setDriverForm({ ...driverForm, licenseNo: e.target.value })} /></label>
-            <label>HR Employee (optional)
-              <select value={driverForm.employeeId} onChange={(e) => setDriverForm({ ...driverForm, employeeId: e.target.value })}>
-                <option value="">none</option>
-                {(employees || []).map((emp) => <option key={emp._id} value={emp._id}>{emp.name}</option>)}
-              </select>
-            </label>
-            <label>Subcontractor
-              <input type="checkbox" checked={driverForm.isSubcontractor} onChange={(e) => setDriverForm({ ...driverForm, isSubcontractor: e.target.checked })} />
-            </label>
             <button type="submit">Create</button>
           </form>
-          <p className="hint">Link an employee to make completed trips earn a payroll bonus. Subcontractors never do.</p>
           <table>
-            <thead><tr><th>Name</th><th>License</th><th>Type</th></tr></thead>
-            <tbody>{(drivers || []).map((d) => <tr key={d._id}><td>{d.name}</td><td>{d.licenseNo}</td><td><span className="pill">{d.isSubcontractor ? 'subcontractor' : d.employeeId ? 'employee' : 'unlinked'}</span></td></tr>)}</tbody>
+            <thead><tr><th>Name</th><th>License</th></tr></thead>
+            <tbody>{(drivers || []).map((d) => <tr key={d._id}><td>{d.name}</td><td>{d.licenseNo}</td></tr>)}</tbody>
           </table>
         </div>
       </div>
